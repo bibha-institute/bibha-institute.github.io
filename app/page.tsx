@@ -40,6 +40,7 @@ export default function Home() {
   const [notice, setNotice] = useState("");
   const [interestState, setInterestState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [feedbackState, setFeedbackState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [confirmationEmail, setConfirmationEmail] = useState<"sent" | "not_configured" | "failed" | "">("");
 
   const progress = useMemo(() => Math.round(((demoStep + 1) / demoSteps.length) * 100), [demoStep]);
 
@@ -54,6 +55,9 @@ export default function Home() {
     const setState = kind === "interest" ? setInterestState : setFeedbackState;
     setState("sending");
     const payload = Object.fromEntries(new FormData(form).entries());
+    payload.submittedAt = String(performance.timeOrigin);
+    const params = new URLSearchParams(window.location.search);
+    payload.source = [params.get("utm_source"), params.get("utm_campaign")].filter(Boolean).join(" / ") || document.referrer || "direct";
     try {
       const response = await fetch(endpoint, {
         method: "POST",
@@ -61,6 +65,8 @@ export default function Home() {
         body: JSON.stringify(payload),
       });
       if (!response.ok) throw new Error("Submission failed");
+      const result = await response.json() as { confirmation?: "sent" | "not_configured" | "failed" };
+      if (kind === "interest") setConfirmationEmail(result.confirmation || "");
       setState("sent");
       form.reset();
     } catch {
@@ -201,9 +207,10 @@ export default function Home() {
 
       <section className="join-section" id="join">
         <div className="join-copy"><p className="eyebrow light">Founding network registry</p><h2>If this future should exist,<br />help us shape it.</h2><p>Register your interest as a learner, researcher, mentor, institutional partner, supporter, or prospective study-community advisor.</p>
-          <div className="privacy-note"><b>Minimum information only.</b><span>No clinical data, CVs, publications, identity documents, or payment details are requested here.</span></div>
+          <div className="privacy-note"><b>Minimum information only.</b><span>No clinical data, CVs, publications, identity documents, or payment details are requested here. <a href="/privacy">Read the privacy notice →</a></span></div>
+          <div className="next-steps"><b>WHAT HAPPENS NEXT</b><span><i>1</i>Your response enters the private Founder Desk.</span><span><i>2</i>The founding network is reviewed by role, interest, and pilot fit.</span><span><i>3</i>Suitable contributors are contacted as the first pilot takes shape.</span></div>
         </div>
-        <form className="join-form" onSubmit={(event) => submitForm(event, "/api/interest", "interest")}>
+        {interestState === "sent" ? <div className="registration-receipt" role="status"><span>✓</span><p className="eyebrow">Interest registered</p><h3>You are now part of the founding-network registry.</h3><p>Your response has been stored for review. This is not yet a member account or project acceptance.</p><div><b>{confirmationEmail === "sent" ? "A confirmation email is on its way." : "Email confirmation is being activated for the pilot."}</b><small>You do not need to submit again. BAIRE will contact suitable contributors as the founding pilot develops.</small></div><button className="button secondary" onClick={() => setInterestState("idle")}>Register another person</button></div> : <form className="join-form" onSubmit={(event) => submitForm(event, "/api/interest", "interest")}>
           <div className="form-row"><label>Full name<input name="name" required maxLength={100} placeholder="Your name" /></label><label>Email address<input type="email" name="email" required maxLength={160} placeholder="you@institution.edu" /></label></div>
           <div className="form-row"><label>How would you participate?<select name="role" required defaultValue=""><option value="" disabled>Select a role</option><option>Undergraduate or Master’s student</option><option>PhD student or postdoctoral researcher</option><option>Professor, PI, or diaspora mentor</option><option>Clinician or institutional partner</option><option>Donor, advisor, or supporter</option><option>Study-community representative</option></select></label><label>Where are you based?<input name="location" required maxLength={120} placeholder="City, country" /></label></div>
           <label>Research interests<input name="interests" required maxLength={240} placeholder="e.g., neuroimaging, public health, genomics" /></label>
@@ -212,14 +219,15 @@ export default function Home() {
           <label className="consent"><input type="checkbox" name="consent" value="yes" required /><span>I agree that BAIRE may store this information and contact me about the founding network. I can request removal at any time.</span></label>
           <button className="button form-submit" disabled={interestState === "sending" || interestState === "sent"}>{interestState === "sending" ? "Saving…" : interestState === "sent" ? "Interest registered ✓" : "Join the founding network →"}</button>
           {interestState === "error" && <p className="form-error">We could not save your response. Please try again shortly.</p>}
-        </form>
+        </form>}
       </section>
 
-      <section className="feedback-section">
+      <section className="feedback-section" id="feedback">
         <div><p className="eyebrow">Built for critique</p><h2>What would make you trust—and use—BAIRE?</h2><p>This release exists to turn assumptions into evidence. Tell us what is unclear, missing, risky, or most valuable.</p></div>
         <form onSubmit={(event) => submitForm(event, "/api/feedback", "feedback")}>
-          <label>Your perspective<select name="audience" required defaultValue=""><option value="" disabled>Select one</option><option>Student or trainee</option><option>PI or mentor</option><option>Institutional or hospital leader</option><option>Research participant or community member</option><option>Funder or supporter</option></select></label>
+          <label>Your perspective<select name="audience" required defaultValue=""><option value="" disabled>Select one</option><option>Student or trainee</option><option>PI or mentor</option><option>Institutional or hospital leader</option><option>Research participant or community member</option><option>Funder or supporter</option><option>Privacy or data request</option></select></label>
           <label>How compelling is the concept?<select name="rating" required defaultValue=""><option value="" disabled>Choose 1–5</option><option value="5">5 — Very compelling</option><option value="4">4 — Promising</option><option value="3">3 — Needs clarification</option><option value="2">2 — Major concerns</option><option value="1">1 — Not compelling yet</option></select></label>
+          <label className="wide">Email address <span>Optional—required if you want a reply</span><input type="email" name="email" maxLength={160} placeholder="you@institution.edu" /></label>
           <label className="wide">Your most important feedback<textarea name="message" required maxLength={1200} placeholder="What should BAIRE prove or change next?" /></label>
           <label className="honeypot" aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
           <button disabled={feedbackState === "sending" || feedbackState === "sent"}>{feedbackState === "sending" ? "Sending…" : feedbackState === "sent" ? "Feedback received ✓" : "Send feedback →"}</button>
@@ -229,9 +237,9 @@ export default function Home() {
 
       <footer className="site-footer">
         <a className="brand footer-brand" href="#top"><span className="brand-mark">B</span><span><b>BAIRE</b><small>Research Commons</small></span></a>
-        <p>A proposed Bangladesh-centered global research network.<br />Current release: stakeholder prototype · No clinical data.</p>
-        <div><a href="#model">How it works</a><a href="#demo">Demo</a><a href="#trust">Governance principles</a><a href="#join">Join</a></div>
-        <small>© 2026 BAIRE Research Commons. Concept and prototype led by Khalid Saifullah.</small>
+        <p>A proposed Bangladesh-centered global research network.<br />Current release: Version 2.1 founding-network pilot · No clinical data.</p>
+        <div><a href="#model">How it works</a><a href="#demo">Demo</a><a href="#trust">Governance principles</a><a href="#join">Join</a><a href="/privacy">Privacy</a><a href="/founder">Founder Desk</a></div>
+        <small>© 2026 BAIRE Research Commons. Concept and prototype led by Khalid Saifullah. Version 2.1.</small>
       </footer>
 
       {notice && <div className="toast" role="status"><span>✓</span>{notice}</div>}
