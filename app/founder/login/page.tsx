@@ -11,7 +11,7 @@ export default async function FounderLoginPage() {
 
   return <main className={styles.shell}>
     <section className={styles.panel}>
-      <Link className={styles.brand} href="/"><span>B</span><b>BIBHA</b></Link>
+      <Link className={styles.brand} href="/" aria-label="BIBHA Institute home"><img src="/bibha-logo.png" alt="" /></Link>
       <p className={styles.eyebrow}>PRIVATE OPERATIONS</p>
       <h1>Founder Desk</h1>
       <p className={styles.lede}>Sign in with a one-time security code sent to the authorized founder email. No password or ChatGPT account is required.</p>
