@@ -4,7 +4,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   root: "github-pages",
-  base: "/bibha-institute/",
+  base: "/",
   publicDir: "../public",
   plugins: [react()],
   build: {
