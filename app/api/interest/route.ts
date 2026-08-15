@@ -1,12 +1,15 @@
 import { env } from "cloudflare:workers";
 import { sendInterestEmails } from "../../lib/email";
 import { allowSubmission } from "../../lib/rate-limit";
+import { publicJson, publicPreflight } from "../../lib/cors";
+
+export async function OPTIONS(request: Request) { return publicPreflight(request); }
 
 export async function POST(request: Request) {
   try {
     const body = await request.json() as Record<string, unknown>;
-    if (body.company) return Response.json({ ok: true });
-    if (!validTiming(body.submittedAt) || !(await allowSubmission(request, "interest", 5))) return Response.json({ error: "Please wait before trying again" }, { status: 429 });
+    if (body.company) return publicJson(request, { ok: true });
+    if (!validTiming(body.submittedAt) || !(await allowSubmission(request, "interest", 5))) return publicJson(request, { error: "Please wait before trying again" }, { status: 429 });
     const name = clean(body.name, 100);
     const email = clean(body.email, 160).toLowerCase();
     const role = clean(body.role, 120);
@@ -14,7 +17,7 @@ export async function POST(request: Request) {
     const interests = clean(body.interests, 240);
     const contribution = clean(body.contribution, 700);
     const source = clean(body.source, 180);
-    if (!name || !email.includes("@") || !role || !location || !interests || body.consent !== "yes") return Response.json({ error: "Invalid submission" }, { status: 400 });
+    if (!name || !email.includes("@") || !role || !location || !interests || body.consent !== "yes") return publicJson(request, { error: "Invalid submission" }, { status: 400 });
     const now = Date.now();
     const id = crypto.randomUUID();
     await env.DB.prepare(`INSERT INTO interest_signups (id, created_at, name, email, role, location, interests, contribution, consent, consent_version, status, updated_at, source)
@@ -26,9 +29,9 @@ export async function POST(request: Request) {
     const emailStatus = await sendInterestEmails({ name, email, role, location, interests, contribution });
     await env.DB.prepare(`UPDATE interest_signups SET confirmation_email_status = ?, owner_email_status = ? WHERE email = ?`)
       .bind(emailStatus.confirmation, emailStatus.owner, email).run();
-    return Response.json({ ok: true, confirmation: emailStatus.confirmation });
+    return publicJson(request, { ok: true, confirmation: emailStatus.confirmation });
   } catch {
-    return Response.json({ error: "Unable to save" }, { status: 500 });
+    return publicJson(request, { error: "Unable to save" }, { status: 500 });
   }
 }
 

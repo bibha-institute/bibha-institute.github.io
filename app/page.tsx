@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
+import { apiEndpoint, publicHref } from "./lib/public-runtime";
 
 type DemoRole = "researcher" | "pi";
 
@@ -59,7 +60,7 @@ export default function Home() {
     const params = new URLSearchParams(window.location.search);
     payload.source = [params.get("utm_source"), params.get("utm_campaign")].filter(Boolean).join(" / ") || document.referrer || "direct";
     try {
-      const response = await fetch(endpoint, {
+      const response = await fetch(apiEndpoint(endpoint), {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(payload),
@@ -207,7 +208,7 @@ export default function Home() {
 
       <section className="join-section" id="join">
         <div className="join-copy"><p className="eyebrow light">Founding network registry</p><h2>If this future should exist,<br />help us shape it.</h2><p>Register your interest as a learner, researcher, mentor, institutional partner, supporter, or prospective study-community advisor.</p>
-          <div className="privacy-note"><b>Minimum information only.</b><span>No clinical data, CVs, publications, identity documents, or payment details are requested here. <a href="/privacy">Read the privacy notice →</a></span></div>
+          <div className="privacy-note"><b>Minimum information only.</b><span>No clinical data, CVs, publications, identity documents, or payment details are requested here. <a href={publicHref("/privacy")}>Read the privacy notice →</a></span></div>
           <div className="next-steps"><b>WHAT HAPPENS NEXT</b><span><i>1</i>Your response enters the private Founder Desk.</span><span><i>2</i>The founding network is reviewed by role, interest, and pilot fit.</span><span><i>3</i>Suitable contributors are contacted as the first pilot takes shape.</span></div>
         </div>
         {interestState === "sent" ? <div className="registration-receipt" role="status"><span>✓</span><p className="eyebrow">Interest registered</p><h3>You are now part of the founding-network registry.</h3><p>Your response has been stored for review. This is not yet a member account or project acceptance.</p><div><b>{confirmationEmail === "sent" ? "A confirmation email is on its way." : "Email confirmation is being activated for the pilot."}</b><small>You do not need to submit again. BIBHA Institute will contact suitable contributors as the founding pilot develops.</small></div><button className="button secondary" onClick={() => setInterestState("idle")}>Register another person</button></div> : <form className="join-form" onSubmit={(event) => submitForm(event, "/api/interest", "interest")}>
@@ -238,7 +239,7 @@ export default function Home() {
       <footer className="site-footer">
         <a className="brand footer-brand" href="#top"><span className="brand-mark">B</span><span><b>BIBHA</b><small>Brain Health & Analytics</small></span></a>
         <p>A proposed Bangladesh-centered global research network.<br />Current release: Version 2.1 founding-network pilot · No clinical data.</p>
-        <div><a href="#model">How it works</a><a href="#demo">Demo</a><a href="#trust">Governance principles</a><a href="#join">Join</a><a href="/privacy">Privacy</a><a href="/founder">Founder Desk</a></div>
+        <div><a href="#model">How it works</a><a href="#demo">Demo</a><a href="#trust">Governance principles</a><a href="#join">Join</a><a href="#feedback">Contact BIBHA</a><a href={publicHref("/privacy")}>Privacy</a><a href={publicHref("/founder")}>Founder Desk</a></div>
         <small>© 2026 BIBHA Institute — Bangladesh Institute for Brain Health and Analytics. Concept and prototype led by Khalid Saifullah. Version 2.1.</small>
       </footer>
 
