@@ -2,7 +2,7 @@
 
 The stakeholder-facing platform prototype for a proposed Bangladesh-centered global research network connecting students, researchers, clinicians, faculty, and diaspora mentors through focused four-month computational projects.
 
-## What this release demonstrates
+## Version 2.1 launch scope
 
 - A public mission and partnership website
 - Separate value propositions for trainees, PIs, mentors, hospitals, and supporters
@@ -11,6 +11,10 @@ The stakeholder-facing platform prototype for a proposed Bangladesh-centered glo
 - The BAIRE Research Continuity Library and versioned Continuation Packs
 - Proof-gated development from a no-PHI network pilot toward future cohort and clinical-research capability
 - Persistent founding-network registration and structured stakeholder feedback
+- A private, sign-in-gated Founder Desk for reviewing registrations and feedback
+- Follow-up statuses, private notes, search, filtering, and CSV export
+- Versioned privacy notice, consent record, source tracking, and submission rate limiting
+- Transactional email integration for applicant confirmations and owner alerts when email credentials are configured
 
 ## Safety boundary
 
@@ -38,6 +42,18 @@ pnpm run build
 - `app/api/interest/route.ts` — founding-network registration endpoint
 - `app/api/feedback/route.ts` — stakeholder feedback endpoint
 - `db/schema.ts` — minimal structured persistence schema
+- `app/founder` — private Founder Desk, restricted to the site owner
+- `app/privacy` — public Version 2.1 privacy notice
+
+## Email delivery
+
+Registration and feedback records are saved even when email delivery is unavailable. To activate email, configure these hosted runtime values:
+
+- `FOUNDER_EMAIL` — address that receives new-registration and feedback alerts
+- `RESEND_API_KEY` — secret API key for the transactional email provider
+- `FROM_EMAIL` — verified sender, for example `BAIRE <hello@example.org>`
+
+Never commit these values to GitHub.
 
 ## Ownership and status
 
