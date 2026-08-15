@@ -1,4 +1,6 @@
-# BAIRE Research Commons
+# BIBHA Institute
+
+**Bangladesh Institute for Brain Health and Analytics**
 
 The stakeholder-facing platform prototype for a proposed Bangladesh-centered global research network connecting students, researchers, clinicians, faculty, and diaspora mentors through focused four-month computational projects.
 
@@ -8,7 +10,7 @@ The stakeholder-facing platform prototype for a proposed Bangladesh-centered glo
 - Separate value propositions for trainees, PIs, mentors, hospitals, and supporters
 - An interactive project journey from matching through application, selection, milestones, contribution review, and closeout
 - Contribution-aware reputation with a protected pathway for newcomers
-- The BAIRE Research Continuity Library and versioned Continuation Packs
+- The BIBHA Research Continuity Library and versioned Continuation Packs
 - Proof-gated development from a no-PHI network pilot toward future cohort and clinical-research capability
 - Persistent founding-network registration and structured stakeholder feedback
 - A private, sign-in-gated Founder Desk for reviewing registrations and feedback
@@ -51,12 +53,12 @@ Registration and feedback records are saved even when email delivery is unavaila
 
 - `FOUNDER_EMAIL` — address that receives new-registration and feedback alerts
 - `RESEND_API_KEY` — secret API key for the transactional email provider
-- `FROM_EMAIL` — verified sender, for example `BAIRE <hello@example.org>`
+- `FROM_EMAIL` — verified sender, for example `BIBHA Institute <sender@your-domain.org>`
 
 Never commit these values to GitHub.
 
 ## Ownership and status
 
-Concept and prototype led by Khalid Saifullah. This repository is an early product prototype for stakeholder feedback, governance design, partner discovery, and controlled no-PHI pilot planning.
+Concept and prototype led by Khalid Saifullah. BIBHA Institute stands for the Bangladesh Institute for Brain Health and Analytics. This repository is an early product prototype for stakeholder feedback, governance design, partner discovery, and controlled no-PHI pilot planning.
 
 Copyright © 2026 Khalid Saifullah. All rights reserved.
