@@ -43,7 +43,7 @@ Create the static GitHub Pages build:
 pnpm run build:pages
 ```
 
-The public GitHub Pages mirror is deployed automatically from `main`. Its forms submit to the separately hosted BIBHA service so registrations and feedback remain in the private Founder Desk rather than in GitHub.
+The public website at `https://bibha.medics-global.com` is deployed automatically through GitHub Pages from `main`, making this repository the source of truth for the public site. Its forms submit to the separately hosted BIBHA service so registrations, feedback, and notification credentials remain private rather than being stored in GitHub.
 
 ## Main surfaces
 

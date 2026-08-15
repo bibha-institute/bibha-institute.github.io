@@ -1,5 +1,6 @@
 const ALLOWED_PUBLIC_ORIGINS = new Set([
   "https://bibha-institute.github.io",
+  "https://bibha.medics-global.com",
 ]);
 
 function corsHeaders(request: Request) {

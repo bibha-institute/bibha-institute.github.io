@@ -12,12 +12,13 @@ test("builds the GitHub Pages mirror with working public routes", async () => {
   assert.match(index, /BIBHA Institute/);
   assert.match(index, /\/assets\//);
   assert.doesNotMatch(index, /\/bibha-institute\/assets\//);
-  assert.match(index, /https:\/\/bibha-institute\.github\.io\//);
+  assert.match(index, /https:\/\/bibha\.medics-global\.com\//);
   assert.match(privacy, /Privacy \| BIBHA Institute/);
   assert.match(privacy, /\/assets\//);
   assert.doesNotMatch(privacy, /\/bibha-institute\/assets\//);
   assert.match(javascript, /baire-platform\.khalidsaifullahfahim\.chatgpt\.site/);
   assert.match(javascript, /bibha-institute\.github\.io/);
+  assert.match(javascript, /bibha\.medics-global\.com/);
   assert.doesNotMatch(javascript, /kingkhalid310\.github\.io/);
   assert.match(javascript, /Contact BIBHA/);
 });
