@@ -2,8 +2,8 @@ import { env } from "cloudflare:workers";
 import { getChatGPTUser, requireChatGPTUser } from "../chatgpt-auth";
 
 function founderEmail() {
-  const runtime = env as unknown as { FOUNDER_EMAIL?: string };
-  return (runtime.FOUNDER_EMAIL || "").trim().toLowerCase();
+  const runtime = env as unknown as { FOUNDER_AUTH_EMAIL?: string; FOUNDER_EMAIL?: string };
+  return (runtime.FOUNDER_AUTH_EMAIL || runtime.FOUNDER_EMAIL || "").trim().toLowerCase();
 }
 
 export async function requireFounder(returnTo = "/founder") {

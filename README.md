@@ -62,6 +62,7 @@ The public GitHub Pages mirror is deployed automatically from `main`. Its forms 
 Registration and feedback records are saved even when email delivery is unavailable. To activate email, configure these hosted runtime values:
 
 - `FOUNDER_EMAIL` — address that receives new-registration and feedback alerts
+- `FOUNDER_AUTH_EMAIL` — ChatGPT account permitted to open and manage the private Founder Desk
 - `RESEND_API_KEY` — secret API key for the transactional email provider
 - `FROM_EMAIL` — verified sender, for example `BIBHA Institute <sender@your-domain.org>`
 

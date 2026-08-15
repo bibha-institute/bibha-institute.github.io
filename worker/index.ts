@@ -6,6 +6,7 @@ interface Env {
   ASSETS: Fetcher;
   DB: D1Database;
   FOUNDER_EMAIL?: string;
+  FOUNDER_AUTH_EMAIL?: string;
   RESEND_API_KEY?: string;
   FROM_EMAIL?: string;
   IMAGES: {
