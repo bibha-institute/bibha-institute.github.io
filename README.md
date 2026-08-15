@@ -37,6 +37,14 @@ Create the production build:
 pnpm run build
 ```
 
+Create the static GitHub Pages build:
+
+```bash
+pnpm run build:pages
+```
+
+The public GitHub Pages mirror is deployed automatically from `main`. Its forms submit to the separately hosted BIBHA service so registrations and feedback remain in the private Founder Desk rather than in GitHub.
+
 ## Main surfaces
 
 - `app/page.tsx` — public website, platform walkthrough, interest form, and feedback form
@@ -46,6 +54,8 @@ pnpm run build
 - `db/schema.ts` — minimal structured persistence schema
 - `app/founder` — private Founder Desk, restricted to the site owner
 - `app/privacy` — public Version 2.1 privacy notice
+- `github-pages` — static GitHub Pages entry points that reuse the public website
+- `.github/workflows/pages.yml` — automatic GitHub Pages publication
 
 ## Email delivery
 
