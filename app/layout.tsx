@@ -15,9 +15,9 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "BAIRE Research Commons",
       description: "Research talent is everywhere. Opportunity should be too.",
       type: "website",
-      images: [{ url: "/og.png", width: 1736, height: 909, alt: "BAIRE Research Commons — Bangladesh to the world" }],
+      images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "BAIRE Research Commons — Bangladesh to the world" }],
     },
-    twitter: { card: "summary_large_image", title: "BAIRE Research Commons", description: "Research talent is everywhere. Opportunity should be too.", images: ["/og.png"] },
+    twitter: { card: "summary_large_image", title: "BAIRE Research Commons", description: "Research talent is everywhere. Opportunity should be too.", images: ["/og.jpg"] },
   };
 }
 
