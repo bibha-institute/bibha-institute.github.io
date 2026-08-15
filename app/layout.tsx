@@ -10,10 +10,10 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(base),
     title: "BIBHA Institute | Bangladesh Institute for Brain Health and Analytics",
-    description: "BIBHA Institute connects Bangladesh’s emerging brain-health researchers with local and global mentors through focused, accountable computational projects.",
+    description: "BIBHA Institute advances brain health and aging through Bangladesh-centered, globally connected computational human-data research.",
     openGraph: {
       title: "BIBHA Institute",
-      description: "Research talent is everywhere. Opportunity should be too.",
+      description: "Bangladesh-centered research on brain health and aging in whole-person context.",
       type: "website",
       images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "BIBHA Institute — Bangladesh Institute for Brain Health and Analytics" }],
     },
