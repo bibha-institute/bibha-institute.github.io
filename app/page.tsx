@@ -79,8 +79,7 @@ export default function Home() {
     <main>
       <nav className="nav-shell" aria-label="Primary navigation">
         <a className="brand" href="#top" aria-label="BIBHA Institute home">
-          <span className="brand-mark">B</span>
-          <span><b>BIBHA</b><small>Brain Health & Analytics</small></span>
+          <img className="brand-logo" src="/bibha-logo.png" alt="" />
         </a>
         <div className="nav-links">
           <a href="#model">How it works</a>
@@ -157,7 +156,7 @@ export default function Home() {
 
         <div className="demo-frame">
           <aside className="demo-sidebar">
-            <div className="demo-brand"><span>B</span><b>BIBHA / DEMO</b></div>
+            <div className="demo-brand"><img src="/bibha-logo.png" alt="BIBHA" /><b>/ DEMO</b></div>
             <p>{demoRole === "researcher" ? "RESEARCHER JOURNEY" : "PRINCIPAL INVESTIGATOR JOURNEY"}</p>
             <div className="demo-steps">
               {demoSteps.map((step, index) => (
@@ -237,7 +236,7 @@ export default function Home() {
       </section>
 
       <footer className="site-footer">
-        <a className="brand footer-brand" href="#top"><span className="brand-mark">B</span><span><b>BIBHA</b><small>Brain Health & Analytics</small></span></a>
+        <a className="brand footer-brand" href="#top" aria-label="BIBHA Institute home"><img className="brand-logo" src="/bibha-logo.png" alt="" /></a>
         <p>A proposed Bangladesh-centered global research network.<br />Current release: Version 2.1 founding-network pilot · No clinical data.</p>
         <div><a href="#model">How it works</a><a href="#demo">Demo</a><a href="#trust">Governance principles</a><a href="#join">Join</a><a href="#feedback">Contact BIBHA</a><a href={publicHref("/privacy")}>Privacy</a><a href={publicHref("/founder")}>Founder Desk</a></div>
         <small>© 2026 BIBHA Institute — Bangladesh Institute for Brain Health and Analytics. Concept and prototype led by Khalid Saifullah. Version 2.1.</small>
