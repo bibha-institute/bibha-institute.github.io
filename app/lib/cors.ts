@@ -1,5 +1,5 @@
 const ALLOWED_PUBLIC_ORIGINS = new Set([
-  "https://kingkhalid310.github.io",
+  "https://bibha-institute.github.io",
 ]);
 
 function corsHeaders(request: Request) {
