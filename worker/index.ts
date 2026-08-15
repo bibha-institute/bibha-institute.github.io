@@ -5,7 +5,9 @@ import handler from "vinext/server/app-router-entry";
 interface Env {
   ASSETS: Fetcher;
   DB: D1Database;
+  FOUNDER_AUTH_EMAIL?: string;
   FOUNDER_EMAIL?: string;
+  FOUNDER_SESSION_SECRET?: string;
   RESEND_API_KEY?: string;
   FROM_EMAIL?: string;
   IMAGES: {

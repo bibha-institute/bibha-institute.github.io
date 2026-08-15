@@ -1,10 +1,10 @@
 import { env } from "cloudflare:workers";
-import { isFounderRequest } from "../../../lib/founder-auth";
+import { isFounderRequest, isSameOrigin } from "../../../lib/founder-auth";
 
 const allowedStatuses = new Set(["new", "reviewing", "contacted", "shortlisted", "closed"]);
 
 export async function PATCH(request: Request) {
-  if (!(await isFounderRequest())) return Response.json({ error: "Unauthorized" }, { status: 401 });
+  if (!isSameOrigin(request) || !(await isFounderRequest(request))) return Response.json({ error: "Unauthorized" }, { status: 401 });
   const body = await request.json() as Record<string, unknown>;
   const id = clean(body.id, 80);
   const status = clean(body.status, 30);

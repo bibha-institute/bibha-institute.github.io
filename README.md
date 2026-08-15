@@ -13,7 +13,7 @@ The stakeholder-facing platform prototype for a proposed Bangladesh-centered glo
 - The BIBHA Research Continuity Library and versioned Continuation Packs
 - Proof-gated development from a no-PHI network pilot toward future cohort and clinical-research capability
 - Persistent founding-network registration and structured stakeholder feedback
-- A private, sign-in-gated Founder Desk for reviewing registrations and feedback
+- A private, passwordless email-code Founder Desk for reviewing registrations and feedback
 - Follow-up statuses, private notes, search, filtering, and CSV export
 - Versioned privacy notice, consent record, source tracking, and submission rate limiting
 - Transactional email integration for applicant confirmations and owner alerts when email credentials are configured
@@ -52,7 +52,7 @@ The public website at `https://bibha.medics-global.com` is deployed automaticall
 - `app/api/interest/route.ts` — founding-network registration endpoint
 - `app/api/feedback/route.ts` — stakeholder feedback endpoint
 - `db/schema.ts` — minimal structured persistence schema
-- `app/founder` — private Founder Desk, restricted to the site owner
+- `app/founder` — private Founder Desk, restricted by short-lived email-code sessions
 - `app/privacy` — public Version 2.1 privacy notice
 - `github-pages` — static GitHub Pages entry points that reuse the public website
 - `.github/workflows/pages.yml` — automatic GitHub Pages publication
@@ -62,10 +62,12 @@ The public website at `https://bibha.medics-global.com` is deployed automaticall
 Registration and feedback records are saved even when email delivery is unavailable. To activate email, configure these hosted runtime values:
 
 - `FOUNDER_EMAIL` — address that receives new-registration and feedback alerts
+- `FOUNDER_AUTH_EMAIL` — email address permitted to receive Founder Desk login codes
 - `RESEND_API_KEY` — secret API key for the transactional email provider
 - `FROM_EMAIL` — verified sender, for example `BIBHA Institute <sender@your-domain.org>`
+- `FOUNDER_SESSION_SECRET` — strong secret used to authenticate one-time codes and sessions
 
-Never commit these values to GitHub.
+Never commit real secrets to GitHub.
 
 ## Ownership and status
 

@@ -1,4 +1,4 @@
-import { integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
+import { index, integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
 
 export const interestSignups = sqliteTable("interest_signups", {
   id: text("id").primaryKey(),
@@ -37,3 +37,21 @@ export const submissionLimits = sqliteTable("submission_limits", {
   count: integer("count").notNull().default(1),
   expiresAt: integer("expires_at").notNull(),
 });
+
+export const founderAuthCodes = sqliteTable("founder_auth_codes", {
+  id: text("id").primaryKey(),
+  email: text("email").notNull(),
+  codeHash: text("code_hash").notNull(),
+  createdAt: integer("created_at").notNull(),
+  expiresAt: integer("expires_at").notNull(),
+  attempts: integer("attempts").notNull().default(0),
+  consumedAt: integer("consumed_at"),
+}, (table) => [index("idx_founder_auth_codes_email_created").on(table.email, table.createdAt)]);
+
+export const founderSessions = sqliteTable("founder_sessions", {
+  tokenHash: text("token_hash").primaryKey(),
+  email: text("email").notNull(),
+  createdAt: integer("created_at").notNull(),
+  expiresAt: integer("expires_at").notNull(),
+  lastSeenAt: integer("last_seen_at").notNull(),
+}, (table) => [index("idx_founder_sessions_expires").on(table.expiresAt)]);
