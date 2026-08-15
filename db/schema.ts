@@ -10,7 +10,7 @@ export const interestSignups = sqliteTable("interest_signups", {
   interests: text("interests").notNull(),
   contribution: text("contribution"),
   consent: integer("consent").notNull().default(1),
-  consentVersion: text("consent_version").notNull().default("2026-08-v2.1"),
+  consentVersion: text("consent_version").notNull().default("2026-08-bibha-v2.1"),
   status: text("status").notNull().default("new"),
   adminNote: text("admin_note"),
   followedUpAt: integer("followed_up_at"),

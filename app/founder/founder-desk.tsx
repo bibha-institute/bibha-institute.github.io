@@ -41,7 +41,7 @@ export default function FounderDesk({ userName, interest: initialInterest, feedb
 
   return <main className={styles.shell}>
     <aside className={styles.sidebar}>
-      <Link className={styles.brand} href="/"><span>B</span><b>BAIRE</b></Link>
+      <Link className={styles.brand} href="/"><span>B</span><b>BIBHA</b></Link>
       <p>FOUNDER DESK · V2.1</p>
       <button className={tab === "network" ? styles.active : ""} onClick={() => setTab("network")}>Founding network <em>{newInterest}</em></button>
       <button className={tab === "feedback" ? styles.active : ""} onClick={() => setTab("feedback")}>Stakeholder feedback <em>{newFeedback}</em></button>

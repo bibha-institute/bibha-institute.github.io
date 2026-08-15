@@ -7,7 +7,7 @@ export async function GET() {
   const columns = ["created_at", "name", "email", "role", "location", "interests", "contribution", "status", "admin_note", "followed_up_at", "source", "confirmation_email_status", "owner_email_status"];
   const rows = [columns.join(","), ...(result.results || []).map(row => columns.map(column => csvCell(row[column])).join(","))];
   return new Response(rows.join("\n"), {
-    headers: { "content-type": "text/csv; charset=utf-8", "content-disposition": `attachment; filename="baire-founding-network-${new Date().toISOString().slice(0, 10)}.csv"`, "cache-control": "no-store" },
+    headers: { "content-type": "text/csv; charset=utf-8", "content-disposition": `attachment; filename="bibha-founding-network-${new Date().toISOString().slice(0, 10)}.csv"`, "cache-control": "no-store" },
   });
 }
 

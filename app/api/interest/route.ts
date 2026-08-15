@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     const now = Date.now();
     const id = crypto.randomUUID();
     await env.DB.prepare(`INSERT INTO interest_signups (id, created_at, name, email, role, location, interests, contribution, consent, consent_version, status, updated_at, source)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1, '2026-08-v2.1', 'new', ?, ?)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1, '2026-08-bibha-v2.1', 'new', ?, ?)
       ON CONFLICT(email) DO UPDATE SET name = excluded.name, role = excluded.role, location = excluded.location,
       interests = excluded.interests, contribution = excluded.contribution, consent = 1, consent_version = excluded.consent_version,
       updated_at = excluded.updated_at, source = excluded.source`)

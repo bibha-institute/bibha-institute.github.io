@@ -9,15 +9,15 @@ export async function generateMetadata(): Promise<Metadata> {
   const base = host ? `${protocol}://${host}` : "http://localhost:3000";
   return {
     metadataBase: new URL(base),
-    title: "BAIRE Research Commons | Research without borders",
-    description: "A proposed Bangladesh-centered global research network connecting emerging scientists, mentors, institutions, and the diaspora through focused four-month projects.",
+    title: "BIBHA Institute | Bangladesh Institute for Brain Health and Analytics",
+    description: "BIBHA Institute connects Bangladesh’s emerging brain-health researchers with local and global mentors through focused, accountable computational projects.",
     openGraph: {
-      title: "BAIRE Research Commons",
+      title: "BIBHA Institute",
       description: "Research talent is everywhere. Opportunity should be too.",
       type: "website",
-      images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "BAIRE Research Commons — Bangladesh to the world" }],
+      images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "BIBHA Institute — Bangladesh Institute for Brain Health and Analytics" }],
     },
-    twitter: { card: "summary_large_image", title: "BAIRE Research Commons", description: "Research talent is everywhere. Opportunity should be too.", images: ["/og.jpg"] },
+    twitter: { card: "summary_large_image", title: "BIBHA Institute", description: "Bangladesh Institute for Brain Health and Analytics.", images: ["/og.jpg"] },
   };
 }
 
