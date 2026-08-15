@@ -47,6 +47,14 @@ export async function sendFeedbackNotification(feedback: { audience: string; rat
   });
 }
 
+export async function sendFounderLoginCode(email: string, code: string) {
+  return sendEmail({
+    to: email,
+    subject: "Your BIBHA Founder Desk security code",
+    html: `<div style="font-family:Arial,sans-serif;max-width:620px;line-height:1.6;color:#123f34"><p style="font-size:12px;font-weight:700;letter-spacing:.12em">BIBHA INSTITUTE · FOUNDER DESK</p><h1 style="font-family:Georgia,serif;font-weight:400">Your security code is</h1><p style="margin:28px 0;font-size:34px;font-weight:800;letter-spacing:.22em">${escapeHtml(code)}</p><p>This code expires in 10 minutes and can be used only once.</p><p>If you did not request this code, you can safely ignore this email.</p></div>`,
+  });
+}
+
 function escapeHtml(value: string) {
   return value.replace(/[&<>"]/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[character] || character);
 }

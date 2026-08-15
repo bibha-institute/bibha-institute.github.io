@@ -19,6 +19,7 @@ test("builds the GitHub Pages mirror with working public routes", async () => {
   assert.match(javascript, /baire-platform\.khalidsaifullahfahim\.chatgpt\.site/);
   assert.match(javascript, /bibha-institute\.github\.io/);
   assert.match(javascript, /bibha\.medics-global\.com/);
+  assert.match(javascript, /desk\.medics-global\.com/);
   assert.doesNotMatch(javascript, /kingkhalid310\.github\.io/);
   assert.match(javascript, /Contact BIBHA/);
 });

@@ -3,6 +3,7 @@ const GITHUB_PAGES_ORIGINS = new Set([
   "https://bibha.medics-global.com",
 ]);
 const SERVICE_ORIGIN = "https://baire-platform.khalidsaifullahfahim.chatgpt.site";
+const FOUNDER_DESK_ORIGIN = "https://desk.medics-global.com";
 
 export function isGitHubPages() {
   return typeof window !== "undefined" && GITHUB_PAGES_ORIGINS.has(window.location.origin);
@@ -17,5 +18,5 @@ export function publicHref(path: "/" | "/privacy" | "/founder" | "/#feedback") {
   if (path === "/") return "/";
   if (path === "/privacy") return "/privacy/";
   if (path === "/#feedback") return "/#feedback";
-  return `${SERVICE_ORIGIN}/founder`;
+  return `${FOUNDER_DESK_ORIGIN}/founder`;
 }

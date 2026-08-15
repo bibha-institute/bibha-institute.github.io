@@ -45,7 +45,7 @@ export default function FounderDesk({ userName, interest: initialInterest, feedb
       <p>FOUNDER DESK · V2.1</p>
       <button className={tab === "network" ? styles.active : ""} onClick={() => setTab("network")}>Founding network <em>{newInterest}</em></button>
       <button className={tab === "feedback" ? styles.active : ""} onClick={() => setTab("feedback")}>Stakeholder feedback <em>{newFeedback}</em></button>
-      <div className={styles.sideBottom}><small>Signed in as</small><b>{userName}</b><a href="/signout-with-chatgpt?return_to=/">Sign out</a></div>
+      <div className={styles.sideBottom}><small>Signed in as</small><b>{userName}</b><form action="/api/founder/auth/logout" method="post" style={{ marginTop: 12 }}><button type="submit" style={{ padding: 0, border: 0, background: "transparent", color: "#d6ef8d", cursor: "pointer", font: "inherit", fontSize: 9 }}>Sign out</button></form></div>
     </aside>
     <section className={styles.main}>
       <header><div><p>PRIVATE OPERATIONS</p><h1>{tab === "network" ? "Founding network registry" : "Stakeholder feedback"}</h1></div><a className={styles.export} href="/api/founder/export">Export CSV ↓</a></header>
