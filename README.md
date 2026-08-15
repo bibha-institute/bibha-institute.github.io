@@ -4,11 +4,12 @@
 
 The stakeholder-facing platform prototype for a proposed Bangladesh-centered global research network connecting students, researchers, clinicians, faculty, and diaspora mentors through focused four-month computational projects.
 
-## Version 2.1 launch scope
+## Version 2.2 launch scope
 
 - A public mission and partnership website
 - Separate value propositions for trainees, PIs, mentors, hospitals, and supporters
-- An interactive project journey from matching through application, selection, milestones, contribution review, and closeout
+- A clear scientific identity spanning brain health and aging, whole-person determinants, and computational human-data science
+- One bounded founding-pilot concept with transparent status, intended outputs, and roles
 - Contribution-aware reputation with a protected pathway for newcomers
 - The BIBHA Research Continuity Library and versioned Continuation Packs
 - Proof-gated development from a no-PHI network pilot toward future cohort and clinical-research capability
@@ -47,13 +48,13 @@ The public website at `https://bibha.medics-global.com` is deployed automaticall
 
 ## Main surfaces
 
-- `app/page.tsx` — public website, platform walkthrough, interest form, and feedback form
+- `app/page.tsx` — public research website, founding-pilot brief, interest form, and feedback form
 - `app/globals.css` — complete responsive visual system
 - `app/api/interest/route.ts` — founding-network registration endpoint
 - `app/api/feedback/route.ts` — stakeholder feedback endpoint
 - `db/schema.ts` — minimal structured persistence schema
 - `app/founder` — private Founder Desk, restricted by short-lived email-code sessions
-- `app/privacy` — public Version 2.1 privacy notice
+- `app/privacy` — public Version 2.1 privacy notice, retained because Version 2.2 does not change data handling
 - `github-pages` — static GitHub Pages entry points that reuse the public website
 - `.github/workflows/pages.yml` — automatic GitHub Pages publication
 

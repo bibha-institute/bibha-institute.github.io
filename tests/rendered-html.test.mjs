@@ -10,7 +10,10 @@ test("server-renders the BIBHA stakeholder experience", async () => {
   const html = await response.text();
   assert.match(html, /BIBHA Institute/);
   assert.match(html, /Research talent is everywhere/);
-  assert.match(html, /Interactive platform walkthrough/);
+  assert.match(html, /What we study/);
+  assert.match(html, /Founding Pilot 01/);
+  assert.match(html, /Version 2\.2/);
+  assert.doesNotMatch(html, /WHAT THIS RELEASE WILL NOT DO/);
   assert.match(html, /Founding network registry/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/);
 });
