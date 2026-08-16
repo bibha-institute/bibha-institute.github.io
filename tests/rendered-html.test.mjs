@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 test("server-renders the BIBHA stakeholder experience", async () => {
@@ -18,4 +19,10 @@ test("server-renders the BIBHA stakeholder experience", async () => {
   assert.doesNotMatch(html, /WHAT THIS RELEASE WILL NOT DO/);
   assert.match(html, /Founding network registry/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/);
+});
+
+test("accepts founding-pilot requests from the research portal", async () => {
+  const cors = await readFile(new URL("../app/lib/cors.ts", import.meta.url), "utf8");
+  assert.match(cors, /https:\/\/portal\.bibha\.medics-global\.com/);
+  assert.match(cors, /bibha-research-portal\.khalidsaifullahfahim\.chatgpt\.site/);
 });
