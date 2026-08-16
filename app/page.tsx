@@ -78,7 +78,7 @@ export default function Home() {
     <main>
       <nav className="nav-shell" aria-label="Primary navigation">
         <a className="brand" href="#top" aria-label="BIBHA Institute home"><img className="brand-logo" src="/bibha-logo.png" alt="BIBHA Institute" /></a>
-        <div className="nav-links"><a href="#research">Research</a><a href="#pilot">Founding pilot</a><a href="#model">How it works</a><a href="#trust">Principles</a></div>
+        <div className="nav-links"><a href="#research">Research</a><a href="#pilot">Founding pilot</a><a href="#model">How it works</a><a href="#trust">Principles</a><a href="https://portal.bibha.medics-global.com/" target="_blank" rel="noopener noreferrer">Research portal</a></div>
         <a className="nav-cta" href="#join">Join the founding network <span>↗</span></a>
       </nav>
 
@@ -87,7 +87,7 @@ export default function Home() {
           <div className="signal"><span /> Founding network · Bangladesh-centered · Globally connected</div>
           <h1>Research talent is everywhere.<br /><em>Opportunity should be too.</em></h1>
           <p className="hero-lede"><strong>BIBHA Institute</strong>—the Bangladesh Institute for Brain Health and Analytics—is a proposed research network advancing brain health and aging through computational human-data science, with whole-person and systemic health built into the question.</p>
-          <div className="hero-actions"><a className="button primary" href="#research">Explore our research focus <span>→</span></a><a className="button secondary" href="#join">Register your interest</a></div>
+          <div className="hero-actions"><a className="button primary" href="https://portal.bibha.medics-global.com/" target="_blank" rel="noopener noreferrer">Open the Research Portal <span>↗</span></a><a className="button secondary" href="#research">Explore our research focus</a><a className="button secondary" href="#join">Register your interest</a></div>
           <div className="hero-guardrails"><span><b>01</b> Brain-centered</span><span><b>02</b> Computational first</span><span><b>03</b> Bangladesh ↔ Global</span></div>
         </div>
         <div className="network-stage" aria-label="BIBHA connects Bangladesh with mentors, methods, and research collaborators worldwide">
@@ -160,7 +160,7 @@ export default function Home() {
         <button disabled={feedbackState === "sending" || feedbackState === "sent"}>{feedbackState === "sending" ? "Sending…" : feedbackState === "sent" ? "Message received ✓" : "Send message →"}</button>{feedbackState === "error" && <p className="form-error wide">We could not save your message. Please try again shortly.</p>}
       </form></section>
 
-      <footer className="site-footer"><a className="brand footer-brand" href="#top" aria-label="BIBHA Institute home"><img className="brand-logo" src="/bibha-logo.png" alt="BIBHA Institute" /></a><p>Bangladesh-centered research on brain health and aging in whole-person context.<br />Current release: Version 2.2 · Founding network and pilot design.</p><div><a href="#research">Research focus</a><a href="#pilot">Founding pilot</a><a href="#model">How it works</a><a href="#trust">Principles</a><a href="#about">About</a><a href="#join">Join</a><a href="#feedback">Contact</a><a href={publicHref("/privacy")}>Privacy</a><a href={publicHref("/founder")}>Founder Desk</a></div><small>© 2026 BIBHA Institute — Bangladesh Institute for Brain Health and Analytics. Founded and led by Khalid Saifullah. Version 2.2.</small></footer>
+      <footer className="site-footer"><a className="brand footer-brand" href="#top" aria-label="BIBHA Institute home"><img className="brand-logo" src="/bibha-logo.png" alt="BIBHA Institute" /></a><p>Bangladesh-centered research on brain health and aging in whole-person context.<br />Current release: Version 2.2 · Founding network and pilot design.</p><div><a href="#research">Research focus</a><a href="#pilot">Founding pilot</a><a href="#model">How it works</a><a href="#trust">Principles</a><a href="#about">About</a><a href="#join">Join</a><a href="#feedback">Contact</a><a href="https://portal.bibha.medics-global.com/" target="_blank" rel="noopener noreferrer">Research Portal</a><a href={publicHref("/privacy")}>Privacy</a><a href={publicHref("/founder")}>Founder Desk</a></div><small>© 2026 BIBHA Institute — Bangladesh Institute for Brain Health and Analytics. Founded and led by Khalid Saifullah. Version 2.2.</small></footer>
     </main>
   );
 }
