@@ -14,6 +14,7 @@ test("server-renders the BIBHA stakeholder experience", async () => {
   assert.match(html, /Founding Pilot 01/);
   assert.match(html, /Version 2\.2/);
   assert.match(html, /href="https:\/\/khalid-saifullah\.com\/"/);
+  assert.match(html, /href="https:\/\/portal\.bibha\.medics-global\.com\/"/);
   assert.doesNotMatch(html, /WHAT THIS RELEASE WILL NOT DO/);
   assert.match(html, /Founding network registry/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/);
