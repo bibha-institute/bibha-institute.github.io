@@ -1,6 +1,8 @@
 const ALLOWED_PUBLIC_ORIGINS = new Set([
   "https://bibha-institute.github.io",
   "https://bibha.medics-global.com",
+  "https://portal.bibha.medics-global.com",
+  "https://bibha-research-portal.khalidsaifullahfahim.chatgpt.site",
 ]);
 
 function corsHeaders(request: Request) {
